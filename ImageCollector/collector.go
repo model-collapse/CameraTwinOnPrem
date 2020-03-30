@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/url"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 )
 
@@ -60,8 +62,12 @@ func main() {
 	if token.Error() != nil {
 		log.Panicf("Error in publush! %v", token.Error())
 	} else {
-		log.Printf("Command published!")
+		log.Printf("Command Subscribed!")
 	}
 
+	c chan os.Signal
+	signal.Notify(c, syscall.SIGTERM)
+	<-c
+	
 	return
 }
