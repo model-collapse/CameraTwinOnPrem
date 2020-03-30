@@ -23,7 +23,7 @@ func main() {
 	mqttHost := os.Getenv("MQTT_HOST")
 	mqttPort := os.Getenv("MQTT_PORT")
 	mclient := mqtt.NewClient((&mqtt.ClientOptions{
-		Servers:  []*url.URL{toURL(fmt.Sprintf("tcp://emq:8883", mqttHost, mqttPort))},
+		Servers:  []*url.URL{toURL(fmt.Sprintf("tcp://%s:%s", mqttHost, mqttPort))},
 		ClientID: "image collector",
 	}))
 

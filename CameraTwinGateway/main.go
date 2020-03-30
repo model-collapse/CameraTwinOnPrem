@@ -50,6 +50,6 @@ func main() {
 	router.Post("/camera_twin/upload", handleFSPost)
 	router.Post("/camera_twin/log", handleLogPost)
 
-	log.Printf("Starting listening on 8964....")
-	h.ListenAndServe("0.0.0.0:" + servicePort, router.HandleRequest)
+	log.Printf("Starting listening on %s....", servicePort)
+	h.ListenAndServe("0.0.0.0:"+servicePort, router.HandleRequest)
 }
