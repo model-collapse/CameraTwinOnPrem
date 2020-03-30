@@ -2,7 +2,6 @@ package main
 
 import (
 	fmt "fmt"
-	mqtt "github.com/eclipse/paho.mqtt.golang"
 	"io/ioutil"
 	"log"
 	"net/url"
@@ -10,6 +9,8 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+
+	mqtt "github.com/eclipse/paho.mqtt.golang"
 )
 
 func toURL(u string) (ret *url.URL) {
@@ -65,9 +66,9 @@ func main() {
 		log.Printf("Command Subscribed!")
 	}
 
-	c chan os.Signal
+	var c chan os.Signal
 	signal.Notify(c, syscall.SIGTERM)
 	<-c
-	
+
 	return
 }
