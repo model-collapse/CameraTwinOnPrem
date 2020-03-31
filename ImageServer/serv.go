@@ -22,7 +22,7 @@ func main() {
 	fsHandler = h.FSHandler("/store", 2)
 
 	router := rt.New()
-	router.Get("/files/*")
+	router.Get("/files/*", handleFSGet)
 
 	log.Printf("Starting listening on %s....", servicePort)
 	h.ListenAndServe("0.0.0.0:"+servicePort, router.HandleRequest)
