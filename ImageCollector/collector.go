@@ -25,6 +25,7 @@ func toURL(u string) (ret *url.URL) {
 func main() {
 	mqttHost := os.Getenv("MQTT_HOST")
 	mqttPort := os.Getenv("MQTT_PORT")
+	log.Printf("Connecting %s:%s", mqttHost, mqttPort)
 	mclient := mqtt.NewClient((&mqtt.ClientOptions{
 		Servers:  []*url.URL{toURL(fmt.Sprintf("tcp://%s:%s", mqttHost, mqttPort))},
 		ClientID: "image collector",
@@ -60,6 +61,7 @@ func main() {
 		ioutil.WriteFile(path, pck.Image, os.ModePerm)
 	})
 
+	log.Printf("Waiting...")
 	token.Wait()
 	if token.Error() != nil {
 		log.Panicf("Error in publush! %v", token.Error())
