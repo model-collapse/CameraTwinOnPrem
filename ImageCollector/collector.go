@@ -28,7 +28,7 @@ func main() {
 	log.Printf("Connecting %s:%s", mqttHost, mqttPort)
 	mclient := mqtt.NewClient((&mqtt.ClientOptions{
 		Servers:  []*url.URL{toURL(fmt.Sprintf("tcp://%s:%s", mqttHost, mqttPort))},
-		ClientID: "image collector",
+		ClientID: "image-collector",
 	}))
 
 	if token := mclient.Connect(); token.Wait() && token.Error() != nil {
@@ -69,7 +69,7 @@ func main() {
 		log.Printf("Command Subscribed!")
 	}
 
-	var c chan os.Signal
+	c := make(chan os.Signal)
 	signal.Notify(c, syscall.SIGTERM)
 	<-c
 
