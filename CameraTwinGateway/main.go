@@ -44,6 +44,7 @@ func initMQTT() {
 }
 
 func main() {
+	initMQTT()
 	servicePort = os.Getenv("SERVICE_PORT")
 
 	router := rt.New()
