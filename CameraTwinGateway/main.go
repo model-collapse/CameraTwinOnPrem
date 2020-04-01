@@ -33,7 +33,7 @@ func initMQTT() {
 	cleanSession = strings.ToLower(os.Getenv("MQTT_CLEAN_SESSION"))
 
 	mclient = mqtt.NewClient((&mqtt.ClientOptions{
-		Servers:      []*url.URL{toURL(fmt.Sprintf("tcp://emq:8883", mqttHost, mqttPort))},
+		Servers:      []*url.URL{toURL(fmt.Sprintf("tcp://%s:%s", mqttHost, mqttPort))},
 		ClientID:     "camera_twin",
 		CleanSession: cleanSession == "true" || cleanSession == "yes",
 	}))
