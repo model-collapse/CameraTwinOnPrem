@@ -54,6 +54,7 @@ func main() {
 
 		tm := time.Unix(pck.TimestampSend, 0)
 		timeStr := tm.Format("20060102150405")
+		log.Printf("Received images from %s, @%s", pck.DeviceId, timeStr)
 
 		path := fmt.Sprintf("%s/%s_%d.jpg", dir, pck.DeviceId, timeStr)
 		ioutil.WriteFile(path, pck.Image, os.ModePerm)
