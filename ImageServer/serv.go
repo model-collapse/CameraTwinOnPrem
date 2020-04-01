@@ -19,7 +19,7 @@ func handleFSGet(ctx *rt.Context) (reterr error) {
 func main() {
 	servicePort := os.Getenv("SERVICE_PORT")
 	flag.Parse()
-	fsHandler = h.FSHandler("/store", 2)
+	fsHandler = h.FSHandler("/store", 1)
 
 	router := rt.New()
 	router.Get("/files/*", handleFSGet)
